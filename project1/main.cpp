@@ -3,6 +3,8 @@
  * Primary Author: D'Anthony Weaver
  * Contributing Authors: N/A
  * Last Modified: 6 JUNE 2021
+ * 
+ * TO DO: Implement how to test for a tie when the categories are equal
  */
 
 #include <iostream> 
