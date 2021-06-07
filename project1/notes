@@ -1,0 +1,22 @@
+Description:
+[X] 1) prompt user for 3 integers: midterm grade, project average, homework average
+
+[X] 2) display which of these are the highest so far (will be output at a %)
+
+[X] 3) display which of the three is the lowest so far (will be output as a %)
+
+4) Compute the student's overall average and display it 
+	- midterm is 20% of overall
+	- project average is 40% of overall 
+	- homework is 15% of overall 
+
+	** Will need to work out how this computation will work ** 
+
+5) Display if any of the grades are failing (below 70%)
+
+NOTES:
+	* figure out what to do in the case of a tie in grades 
+
+	* don't worry about error checking 
+
+	* when computing the avearge figure out if all 100s first, if so no need to compute
