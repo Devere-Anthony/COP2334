@@ -4,6 +4,9 @@
  * Contributing Authors: N/A
  * Last Modified: 8 JUNE 2021
  * 
+ * TO DO: 
+ * 	1) Meet to figure out the requirements for calculating average, they're ambiguous 
+ *	2) Write a description in comment for each function 
  */
 
 #include <iostream> 
@@ -109,13 +112,19 @@ int main()
 //================================================
 int getMidtermGrade()
 {
+	/* getMidtermGrade() -> routine allows user to enter a
+	 * 	value to be used as a midterm average. 
+	 * Args: n/a
+	 * Return: int containing user's input.
+	 */
+
 	int g{};
 
 	do
 	{
 		std::cout << "Enter midterm grade: ";
 		std::cin >> g;
-		if(g<0||g>100)
+		if(g<0||g>100)	// ensure input is within bounds
 			std::cout << "Grade must be between 0-100%" << std::endl;
 	} while(g<0||g>100);
 	std::cout << std::endl;
@@ -126,13 +135,19 @@ int getMidtermGrade()
 //------------------------------------------------
 int getProjectAvg()
 {
+	/* getProjectAvg() -> routine allows user to enter a
+	 * 	value to be used as a project average. 
+	 * Args: n/a
+	 * Return: int containing user's input.
+	 */
+
 	int p{};
 
 	do
 	{
 		std::cout << "Enter project average: ";
 		std::cin >> p;
-		if(p<0||p>100)
+		if(p<0||p>100)	// ensure input is within bounds
 			std::cout << "Project average must be between 0-100%" << std::endl;
 	} while(p<0||p>100);
 	std::cout << std::endl;
@@ -143,13 +158,19 @@ int getProjectAvg()
 //------------------------------------------------
 int getHomeworkAvg()
 {
+	/* getHomeworkAvg() -> routine allows user to enter a
+	 * 	value to be used as a homework average. 
+	 * Args: n/a
+	 * Return: int containing user's input.
+	 */
+
 	int h{};
 
 	do
 	{
 		std::cout << "Enter homework average: ";
 		std::cin >> h;
-		if(h<0||h>100)
+		if(h<0||h>100)	// ensure input is within bounds
 			std::cout << "Homework average must be between 0-100%" << std::endl;
 	} while(h<0||h>100);
 	std::cout << std::endl;
@@ -160,9 +181,17 @@ int getHomeworkAvg()
 //------------------------------------------------
 int highestGrade(const std::vector<int> grades)
 {
-	int highest = grades[0];
+	/* highestGrade() -> routine retrieves the highest 
+	 *	numerical grade from a vector of grades.
+	 * Args: 
+	 * 	- grades -> vector of integers representing 
+	 *		a student's grades.
+	 * Return: int containing the highest numerical grade value.
+	 */
 
-	for(size_t i{}; i < grades.size(); ++i)
+	int highest = grades[0];	// initialize highest to first element 
+
+	for(size_t i{}; i < grades.size(); ++i)	// test each element and set highest
 	{
 		if(grades[i] > highest)
 			highest = grades[i];
@@ -174,9 +203,17 @@ int highestGrade(const std::vector<int> grades)
 //------------------------------------------------
 int lowestGrade(const std::vector<int> grades)
 {
-	int lowest = grades[0];
+	/* lowestGrade() -> routine retrieves the lowest 
+	 *	numerical grade from a vector of grades.
+	 * Args: 
+	 * 	- grades -> vector of integers representing 
+	 *		a student's grades.
+	 * Return: int containing the lowest numerical grade value.
+	 */
 
-	for(size_t i{}; i < grades.size(); ++i)
+	int lowest = grades[0];		// initialize lowest to first element
+
+	for(size_t i{}; i < grades.size(); ++i)	// test each element and set highest
 	{
 		if(grades[i] < lowest)
 			lowest = grades[i];
@@ -188,20 +225,38 @@ int lowestGrade(const std::vector<int> grades)
 //------------------------------------------------
 std::string convertName(const std::vector<int> grades, int x)
 {
+	/* convertName() -> routine "converts" an integer grade value 
+	 *	to its matching string name category using a vector
+	 *	as a "conversion table".
+	 * Args:
+	 *	- grades -> vector of integers representing a student's
+	 *		grades
+	 *	- x -> integer that holds the category's grade value
+	 * Return: the numerical grades corresponding string category
+	 */
+
 	std::vector<std::string> table{"midterm", "project", "homework"};
 	int position{};
 
-	for(size_t i{}; i < grades.size(); ++i)
+	for(size_t i{}; i < grades.size(); ++i)	// iterate over vector to match grade with string
 	{
 		if(x == grades[i])
 			position = i;
 	}
+
 	return table[position];
 };
 
 //------------------------------------------------
 double calculateAvg(const std::vector<int> g)
 {
+	/* calculateAvg() -> routine computes the average of a set 
+	 *	of values. 
+	 * Args: 
+	 *	- g -> vector of integers representing a student's grades
+	 * Return: the average as type double 
+	 */
+
 	double average{}, sum{};
 
 	for(size_t i{}; i < g.size(); ++i)
@@ -215,6 +270,14 @@ double calculateAvg(const std::vector<int> g)
 //------------------------------------------------
 void displayAvg(const std::vector<int> v)
 {
+	/* displayAvg() -> routine calls calculateAvg() routine 
+	 *	in order to calculate the average. It then displays 
+	 *	this value to stdout.
+	 * Args:
+	 *	- v -> vector of values to be averaged
+	 * Return: n/a
+	 */
+
 	std::cout << "\nYour average grade is " 
 		  << std::fixed << std::setprecision(2)
 		  << calculateAvg(v)
@@ -224,6 +287,14 @@ void displayAvg(const std::vector<int> v)
 //------------------------------------------------
 void failTest(const std::vector<int> q)
 {
+	/* failTest() -> routine tests each value to see if it is 
+	 *	below 70. Display which categories are. 
+	 * Args: 
+	 *	- q -> vector of values to be tested
+	 * Return: n/a
+	 *
+	 */
+
 	std::vector<int> failing{};
 
 	// test for below 70
