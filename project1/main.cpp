@@ -2,13 +2,13 @@
  *
  * Primary Author: D'Anthony Weaver
  * Contributing Authors: N/A
- * Last Modified: 6 JUNE 2021
+ * Last Modified: 8 JUNE 2021
  * 
- * TO DO: Implement how to test for a tie when the categories are equal
  */
 
 #include <iostream> 
 #include <vector>
+#include <iomanip>
 
 //================================================
 // Function declaration(s)
@@ -19,6 +19,8 @@ int getHomeworkAvg();
 int highestGrade(const std::vector<int>);
 std::string convertName(const std::vector<int>, int);
 int lowestGrade(const std::vector<int>);
+double calculateAvg(const std::vector<int>);
+void displayAvg(const std::vector<int>);
 
 //================================================
 // Main 
@@ -26,25 +28,83 @@ int lowestGrade(const std::vector<int>);
 int main()
 {
 	int midtermGrade{}, projectAvg{}, homeworkAvg{},
-	    highest{}, lowest{};
-
+	    highest{}, lowest{}, overallAvg{};
 
 	// prompt user for these values 	
 	midtermGrade = getMidtermGrade();
 	projectAvg = getProjectAvg();
 	homeworkAvg = getHomeworkAvg();
 
+	// store values in a vector
 	std::vector<int> grades{midtermGrade, projectAvg, homeworkAvg};
 
-	// Find highest grade and highest category
-	highest = highestGrade(grades);
-	std::cout << "Your highest grade is " << convertName(grades, highest)
-		  << " at " << highest << "%." << std::endl;
+	if(midtermGrade==projectAvg && projectAvg==homeworkAvg)		// case 1 - all three are equal
+	{
+		std::cout << "All three categories are equal at "
+		          << highestGrade(grades) << "%."
+			  << std::endl;
 
-	// Find lowest grade and lowest category
-	lowest = lowestGrade(grades);
-	std::cout << "Your lowest grade is " << convertName(grades, lowest)
-		  << " at " << lowest << "%." << std::endl;
+		// compute average
+		displayAvg(grades);
+
+		// test for failing
+	}
+	else if(midtermGrade==projectAvg && midtermGrade>homeworkAvg)	// case 2 - two are equal and highest 
+	{
+		std::cout << "Your two highest grades are midterm and project at "
+			  << highestGrade(grades) << "%."
+			  << std::endl;
+		std::cout << "Your lowest grade is homework at "
+			  << lowestGrade(grades) << "%."
+			  << std::endl;
+
+		// compute average
+		displayAvg(grades);
+
+		// test for failing
+	}
+	else if(midtermGrade==homeworkAvg && midtermGrade>projectAvg)	// case 3 - two are equal and hightest
+	{
+		std::cout << "Your two highest grades are midterm and homework at "
+			  << highestGrade(grades) << "%."
+			  << std::endl;
+		std::cout << "You lowest grades is project at "
+			  << lowestGrade(grades)
+			  << std::endl;
+
+		// compute average 
+		displayAvg(grades);
+
+		// test for failing
+	}
+	else if(projectAvg==homeworkAvg && projectAvg>midtermGrade)	// case 4 - two are equal and  highest
+	{
+		std::cout << "Your two highest grades are project and homework at "
+			  << highestGrade(grades) << "%."
+			  << std::endl;
+		std::cout << "Your lowest grade is midterm at "
+			  << lowestGrade(grades) << "%."
+			  << std::endl;
+
+		// compute average
+		displayAvg(grades);
+		// test for failling
+	}
+	else								// case 5 - none are equal 
+	{
+		highest = highestGrade(grades);
+		std::cout << "Your highest grade is " << convertName(grades, highest)
+			  << " at " << highest << "%." << std::endl;
+
+		lowest = lowestGrade(grades);
+		std::cout << "Your lowest grade is " << convertName(grades, lowest)
+			  << " at " << lowest << "%." << std::endl;
+
+		// compute average
+		displayAvg(grades);
+		// computer failing
+	}
+
 	return 0;
 }
 
@@ -104,7 +164,6 @@ int getHomeworkAvg()
 //------------------------------------------------
 int highestGrade(const std::vector<int> grades)
 {
-	//std::vector<int> grades{m, p, h};
 	int highest = grades[0];
 
 	for(size_t i{}; i < grades.size(); ++i)
@@ -133,7 +192,6 @@ int lowestGrade(const std::vector<int> grades)
 //------------------------------------------------
 std::string convertName(const std::vector<int> grades, int x)
 {
-	// Use grades vector as a "conversion table"
 	std::vector<std::string> table{"midterm", "project", "homework"};
 	int position{};
 
@@ -144,3 +202,29 @@ std::string convertName(const std::vector<int> grades, int x)
 	}
 	return table[position];
 };
+
+//------------------------------------------------
+double calculateAvg(const std::vector<int> g)
+{
+	double average{}, sum{};
+
+	for(size_t i{}; i < g.size(); ++i)
+		sum += g[i];
+
+	average = (sum/g.size());
+
+	return average;
+};
+
+//------------------------------------------------
+void displayAvg(const std::vector<int> v)
+{
+	std::cout << "Your average grade is " 
+		  << std::fixed << std::setprecision(2)
+		  << calculateAvg(v)
+		  << "%." << std::endl;
+};
+
+
+
+
