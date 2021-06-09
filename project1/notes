@@ -22,14 +22,12 @@ NOTES:
 	* when computing the avearge figure out if all 100s first, if so no need to compute
 
 ============================================================================================
-Program by Cases:
+failTest()
+- takes a vector of grade values (ints)
+- iterate over the vector
+	- test if each is below 70
+	- if they are, add them to a failing vector
 
-Case 1: m==p==h (no need to do any further processing)
-	- output that all 3 grades are equivalent 
-	- average is the same value as the grades (no need to compute)
-	- test if grades are failing (<70%)
-		- if failing, then ouput the student is failing 
-
-Case 2: m==p (only these two are equivalent)
-	- output that m==p
-	- 
+- pass failing vector to name conversion function to get names of failing subjects
+	- iterate failing vector 
+	- call name conversion function with the failing vector and the grade

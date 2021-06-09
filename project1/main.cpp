@@ -21,6 +21,7 @@ std::string convertName(const std::vector<int>, int);
 int lowestGrade(const std::vector<int>);
 double calculateAvg(const std::vector<int>);
 void displayAvg(const std::vector<int>);
+void failTest(const std::vector<int>);
 
 //================================================
 // Main 
@@ -44,10 +45,9 @@ int main()
 		          << highestGrade(grades) << "%."
 			  << std::endl;
 
-		// compute average
-		displayAvg(grades);
+		displayAvg(grades);	// compute & display average
+		failTest(grades);	// test for failing average
 
-		// test for failing
 	}
 	else if(midtermGrade==projectAvg && midtermGrade>homeworkAvg)	// case 2 - two are equal and highest 
 	{
@@ -58,10 +58,8 @@ int main()
 			  << lowestGrade(grades) << "%."
 			  << std::endl;
 
-		// compute average
-		displayAvg(grades);
-
-		// test for failing
+		displayAvg(grades);	// compute & display average
+		failTest(grades);	// test for failing average
 	}
 	else if(midtermGrade==homeworkAvg && midtermGrade>projectAvg)	// case 3 - two are equal and hightest
 	{
@@ -72,10 +70,9 @@ int main()
 			  << lowestGrade(grades)
 			  << std::endl;
 
-		// compute average 
-		displayAvg(grades);
+		displayAvg(grades);	// compute & display average
+		failTest(grades);	// test for failing average
 
-		// test for failing
 	}
 	else if(projectAvg==homeworkAvg && projectAvg>midtermGrade)	// case 4 - two are equal and  highest
 	{
@@ -86,9 +83,9 @@ int main()
 			  << lowestGrade(grades) << "%."
 			  << std::endl;
 
-		// compute average
-		displayAvg(grades);
-		// test for failling
+		displayAvg(grades);	// compute & display average
+		failTest(grades);	// test for failing average
+
 	}
 	else								// case 5 - none are equal 
 	{
@@ -100,9 +97,8 @@ int main()
 		std::cout << "Your lowest grade is " << convertName(grades, lowest)
 			  << " at " << lowest << "%." << std::endl;
 
-		// compute average
-		displayAvg(grades);
-		// computer failing
+		displayAvg(grades);	// compute & display average
+		failTest(grades);	// test for failing average
 	}
 
 	return 0;
@@ -219,12 +215,28 @@ double calculateAvg(const std::vector<int> g)
 //------------------------------------------------
 void displayAvg(const std::vector<int> v)
 {
-	std::cout << "Your average grade is " 
+	std::cout << "\nYour average grade is " 
 		  << std::fixed << std::setprecision(2)
 		  << calculateAvg(v)
 		  << "%." << std::endl;
 };
 
+//------------------------------------------------
+void failTest(const std::vector<int> q)
+{
+	std::vector<int> failing{};
 
+	// test for below 70
+	for(size_t i{}; i < q.size(); ++i)
+		if(q[i] < 70)
+			failing.push_back(q[i]);
 
+	std::cout << std::endl;
 
+	// display failing message
+	for(size_t j{}; j < failing.size(); ++j)
+	{
+		std::cout << "Your " << convertName(q, failing[j])
+			  << " is below 70%" << std::endl;
+	}
+};
