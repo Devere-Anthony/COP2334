@@ -2,11 +2,7 @@
  *
  * Primary Author: D'Anthony Weaver
  * Contributing Authors: N/A
- * Last Modified: 8 JUNE 2021
- * 
- * TO DO: 
- * 	1) Meet to figure out the requirements for calculating average, they're ambiguous 
- *
+ * Last Modified: 9 JUNE 2021
  */
 
 #include <iostream> 
@@ -22,7 +18,7 @@ int getHomeworkAvg();
 int highestGrade(const std::vector<int>);
 std::string convertName(const std::vector<int>, int);
 int lowestGrade(const std::vector<int>);
-double calculateAvg(const std::vector<int>);	// TO DO: look into double vs. float??
+double calculateAvg(const std::vector<int>);	// TO DO: look into why a double vs. float??
 void displayAvg(const std::vector<int>);
 void failTest(const std::vector<int>);
 
@@ -42,10 +38,10 @@ int main()
 	// store values in a vector
 	std::vector<int> grades{midtermGrade, projectAvg, homeworkAvg};
 
-	/* There exist 5 cases (that I can think of) that will test each 
+	/* There exist 5 possible cases (that I can think of) that will test each 
 	 * possible combination of averages. Ultimately decided it was 
-	 * simpler to implement using a series of if,else if...,else branches 
-	 * and then to call the same functions for each possible branch.
+	 * simpler to implement using a series of if/else and logical AND operators
+	 * and then call the same functions in each possible branch.
 	 */
 	if(midtermGrade==projectAvg && projectAvg==homeworkAvg)		// case 1 - all three are equal
 	{
@@ -56,7 +52,7 @@ int main()
 		displayAvg(grades);	// compute & display average
 		failTest(grades);	// test for failing average
 	}
-	else if(midtermGrade==projectAvg && midtermGrade>homeworkAvg)	// case 2 - two are equal and highest 
+	else if(midtermGrade==projectAvg && midtermGrade>homeworkAvg)	// case 2 - two are equal
 	{
 		std::cout << "Your two highest grades are midterm and project at "
 			  << highestGrade(grades) << "%."
@@ -68,7 +64,7 @@ int main()
 		displayAvg(grades);	// compute & display average
 		failTest(grades);	// test for failing average
 	}
-	else if(midtermGrade==homeworkAvg && midtermGrade>projectAvg)	// case 3 - two are equal and hightest
+	else if(midtermGrade==homeworkAvg && midtermGrade>projectAvg)	// case 3 - two are equal
 	{
 		std::cout << "Your two highest grades are midterm and homework at "
 			  << highestGrade(grades) << "%."
@@ -80,7 +76,7 @@ int main()
 		displayAvg(grades);	// compute & display average
 		failTest(grades);	// test for failing average
 	}
-	else if(projectAvg==homeworkAvg && projectAvg>midtermGrade)	// case 4 - two are equal and  highest
+	else if(projectAvg==homeworkAvg && projectAvg>midtermGrade)	// case 4 - two are equal 
 	{
 		std::cout << "Your two highest grades are project and homework at "
 			  << highestGrade(grades) << "%."
