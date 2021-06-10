@@ -6,7 +6,7 @@
  * 
  * TO DO: 
  * 	1) Meet to figure out the requirements for calculating average, they're ambiguous 
- *	2) Write a description in comment for each function 
+ *
  */
 
 #include <iostream> 
@@ -22,7 +22,7 @@ int getHomeworkAvg();
 int highestGrade(const std::vector<int>);
 std::string convertName(const std::vector<int>, int);
 int lowestGrade(const std::vector<int>);
-double calculateAvg(const std::vector<int>);
+double calculateAvg(const std::vector<int>);	// TO DO: look into double vs. float??
 void displayAvg(const std::vector<int>);
 void failTest(const std::vector<int>);
 
@@ -42,6 +42,11 @@ int main()
 	// store values in a vector
 	std::vector<int> grades{midtermGrade, projectAvg, homeworkAvg};
 
+	/* There exist 5 cases (that I can think of) that will test each 
+	 * possible combination of averages. Ultimately decided it was 
+	 * simpler to implement using a series of if,else if...,else branches 
+	 * and then to call the same functions for each possible branch.
+	 */
 	if(midtermGrade==projectAvg && projectAvg==homeworkAvg)		// case 1 - all three are equal
 	{
 		std::cout << "All three categories are equal at "
@@ -50,7 +55,6 @@ int main()
 
 		displayAvg(grades);	// compute & display average
 		failTest(grades);	// test for failing average
-
 	}
 	else if(midtermGrade==projectAvg && midtermGrade>homeworkAvg)	// case 2 - two are equal and highest 
 	{
@@ -75,7 +79,6 @@ int main()
 
 		displayAvg(grades);	// compute & display average
 		failTest(grades);	// test for failing average
-
 	}
 	else if(projectAvg==homeworkAvg && projectAvg>midtermGrade)	// case 4 - two are equal and  highest
 	{
@@ -88,7 +91,6 @@ int main()
 
 		displayAvg(grades);	// compute & display average
 		failTest(grades);	// test for failing average
-
 	}
 	else								// case 5 - none are equal 
 	{
@@ -196,7 +198,6 @@ int highestGrade(const std::vector<int> grades)
 		if(grades[i] > highest)
 			highest = grades[i];
 	}	
-
 	return highest;
 };
 
@@ -218,7 +219,6 @@ int lowestGrade(const std::vector<int> grades)
 		if(grades[i] < lowest)
 			lowest = grades[i];
 	}	
-
 	return lowest;
 };
 
@@ -243,28 +243,29 @@ std::string convertName(const std::vector<int> grades, int x)
 		if(x == grades[i])
 			position = i;
 	}
-
 	return table[position];
 };
 
 //------------------------------------------------
 double calculateAvg(const std::vector<int> g)
 {
-	/* calculateAvg() -> routine computes the average of a set 
+	/* calculateAvg() -> routine computes the weighted average of a set 
 	 *	of values. 
 	 * Args: 
 	 *	- g -> vector of integers representing a student's grades
 	 * Return: the average as type double 
 	 */
 
-	double average{}, sum{};
+	std::vector<double> weights{.20, .40, .15};
+	double weightedAverage{}, sum{};
 
 	for(size_t i{}; i < g.size(); ++i)
-		sum += g[i];
+		sum += (g[i] * weights[i]);
 
-	average = (sum/g.size());
+	// TO DO: Contact professor to see what about these rounding errors between types
+	weightedAverage = (sum/75) * 100;
 
-	return average;
+	return weightedAverage;
 };
 
 //------------------------------------------------
@@ -278,7 +279,7 @@ void displayAvg(const std::vector<int> v)
 	 * Return: n/a
 	 */
 
-	std::cout << "\nYour average grade is " 
+	std::cout << "\nYour weighted average is " 
 		  << std::fixed << std::setprecision(2)
 		  << calculateAvg(v)
 		  << "%." << std::endl;
