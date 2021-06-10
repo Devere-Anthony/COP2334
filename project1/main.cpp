@@ -2,7 +2,7 @@
  *
  * Primary Author: D'Anthony Weaver
  * Contributing Authors: N/A
- * Last Modified: 9 JUNE 2021
+ * Last Modified: 10 JUNE 2021
  */
 
 #include <iostream> 
@@ -254,9 +254,10 @@ double calculateAvg(const std::vector<int> g)
 
 	/* WARNING: If a user enters a non-integer value for a grade, the 
 	 * weighted average will NOT be correct. This is likely due to 
-	 * the fact that grades are integers. Causes an implicit type
-	 * conversion which will cause a compounding error resulting in
-	 * an incorrect weighted average.
+	 * the fact that grades are read as integers. This will throw away
+	 * any values after the decimal point, resulting in the incorrect
+	 * weighted average. Was told only integers would be used for grading
+	 * purposes however.
 	 */
 
 	std::vector<double> weights{.20, .40, .15};
@@ -265,9 +266,7 @@ double calculateAvg(const std::vector<int> g)
 	for(size_t i{}; i < g.size(); ++i)
 		sum += (g[i] * weights[i]);
 
-	// TO DO: Contact professor to see what about these rounding errors between types
-	weightedAverage = (sum/75.0) * 100;
-	std::cout << sum << std::endl;
+	weightedAverage = (sum/75) * 100;
 
 	return weightedAverage;
 };
