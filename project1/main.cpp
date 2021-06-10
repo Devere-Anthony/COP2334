@@ -256,6 +256,13 @@ double calculateAvg(const std::vector<int> g)
 	 * Return: the average as type double 
 	 */
 
+	/* WARNING: If a user enters a non-integer value for a grade, the 
+	 * weighted average will NOT be correct. This is likely due to 
+	 * the fact that grades are integers. Causes an implicit type
+	 * conversion which will cause a compounding error resulting in
+	 * an incorrect weighted average.
+	 */
+
 	std::vector<double> weights{.20, .40, .15};
 	double weightedAverage{}, sum{};
 
@@ -263,7 +270,8 @@ double calculateAvg(const std::vector<int> g)
 		sum += (g[i] * weights[i]);
 
 	// TO DO: Contact professor to see what about these rounding errors between types
-	weightedAverage = (sum/75) * 100;
+	weightedAverage = (sum/75.0) * 100;
+	std::cout << sum << std::endl;
 
 	return weightedAverage;
 };
