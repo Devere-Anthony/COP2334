@@ -25,7 +25,7 @@ Other notes:
 * calculate the cost of each package everytime the user enters a number of units; however, you only need to display
   the quote the user wanted (implement using a switch case)
 
-========================================================================================================================================================================
+===============================================
 1) Prompt user for package input:
 	- create char variable to store user input [X]
 	- prompt user for input [X]
@@ -33,3 +33,13 @@ Other notes:
 	- test if char variable is valid input [X]
 	- if invalid, prompt again until valid [X]
 	- if valid store input and save for later processing [X]
+
+=================================================
+2) getQuote() - selects case then calls function to calculate cost for each package
+	- function takes the package and the number of units and returns the cost
+	- uses a switch case for each package
+	- selects the appropriate case based on the package character
+	- int each case call the function to calculate the cost of each package based on teh number
+	  of unit - has a return value for variable named cost
+	- no return value
+
