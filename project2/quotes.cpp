@@ -6,6 +6,7 @@
  */
 
 #include <iostream>
+#include <iomanip>
 
 //================================================
 // Function Declaraction(s)
@@ -77,6 +78,7 @@ char getPackage()
 			default:	// invalid cases
 				std::cout << "Package not recognized. Please try again.\n"
 					  << std::endl;
+				std::cout << "(Valid Package: 'B', 'S', or 'D')" << std::endl;
 				break;
 		} // end switch
 	}  // end while 
@@ -119,7 +121,7 @@ void getQuote(char p, int u)
 		case 'b':
 		case 'B':
 			std::cout << "\nTotal charges for package B at " << u	// output total
-				  << " units is: $" << totalCharge
+				  << " units is: $" << std::fixed << std::setprecision(2) << totalCharge
 				  << std::endl;
 
 			packageS = calculateCost('s', u);	// calculate other packages
@@ -127,25 +129,29 @@ void getQuote(char p, int u)
 			
 			if(packageS < totalCharge)	// compare total charges
 				std::cout << "By switching to Package S you would save: $"
+					  << std::fixed << std::setprecision(2) 
 					  << (totalCharge - packageS) << std::endl;
 			if(packageD < totalCharge)
 				std::cout << "By switching to Package D you would save: $"
+					  << std::fixed << std::setprecision(2)
 					  << (totalCharge - packageD) << std::endl;
 			break;
 		case 's':
 		case 'S':
 			std::cout << "\nTotal charges for package S at " << u
-				  << " units is: $" << totalCharge
-				  << std::endl;
+				  << " units is: $" << std::fixed << std::setprecision(2)
+				  << totalCharge << std::endl;
 
 			packageB = calculateCost('b', u);
 			packageD = calculateCost('d', u);
 
 			if(packageB < totalCharge)
 				std::cout << "By switching to Package B you would save: $"
+					  << std::fixed << std::setprecision(2)
 					  << (totalCharge - packageS) << std::endl;
 			if(packageD < totalCharge)
 				std::cout << "By switching to Package D you would save: $"
+					  << std::fixed << std::setprecision(2)
 					  << (totalCharge - packageD) << std::endl;
 			break;
 		case 'd':
@@ -158,9 +164,11 @@ void getQuote(char p, int u)
 
 			if(packageB < totalCharge)
 				std::cout << "By switching to Package B you would save: $"
+					  << std::fixed << std::setprecision(2)
 					  << (totalCharge - packageB) << std::endl;
 			if(packageS < totalCharge)
 				std::cout << "By switching to Package S you would save: $"
+					  << std::fixed << std::setprecision(2)
 					  << (totalCharge - packageS) << std::endl;
 			break;
 	}
