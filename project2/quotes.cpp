@@ -21,13 +21,26 @@ double calculateCost(char, int);
 //================================================
 int main()
 {
-	char package; 
-	int units;
+	char package{}, resume{};
+	int units{};
+	bool flag{true};
 
-	package = getPackage();
-	units = getUnits();
+	do
+	{
+		package = getPackage();
+		units = getUnits();
 
-	getQuote(package, units);
+		getQuote(package, units);
+
+		std::cout << "\nWould you like to request another quote?" << std::endl;
+		std::cout << "(Type 'N' to quit, any character to continue)" << std::endl;
+		std::cout << "> ";
+		std::cin >> resume;
+
+		if(resume=='n'||resume=='N')
+			flag = false;
+		std::cout << std::endl;
+	}while(flag);
 
 	return 0;
 }
@@ -61,7 +74,6 @@ char getPackage()
 				break;
 		} // end switch
 	}  // end while 
-
 	return c;
 };
 
@@ -75,7 +87,6 @@ int getUnits()
 		std::cout << "Enter number of units (1-1000 [min-max]): ";
 		std::cin >> x;
 	} while(x<1 || x>1000);  // get user input while x is between 1-1000 inclusive
-
 	return x;
 };
 
@@ -89,16 +100,13 @@ void getQuote(char p, int u)
 	{
 		case 'b':
 		case 'B':
-			std::cout << "Total charges for package B at " << u
+			std::cout << "\nTotal charges for package B at " << u
 				  << " units is: $" << totalCharge
 				  << std::endl;
 
-			// TO DO: Calculate savings
-			// calculate charge using s and d
 			packageS = calculateCost('s', u);
 			packageD = calculateCost('d', u);
 			
-			// if it is less, than output savings message
 			if(packageS < totalCharge)
 				std::cout << "By switching to Package S you would save: $"
 					  << (totalCharge - packageS) << std::endl;
@@ -108,20 +116,36 @@ void getQuote(char p, int u)
 			break;
 		case 's':
 		case 'S':
-			std::cout << "Total charges for package S at " << u
+			std::cout << "\nTotal charges for package S at " << u
 				  << " units is: $" << totalCharge
 				  << std::endl;
-			// TO DO: Calculate savings
+
+			packageB = calculateCost('b', u);
+			packageD = calculateCost('d', u);
+
+			if(packageB < totalCharge)
+				std::cout << "By switching to Package B you would save: $"
+					  << (totalCharge - packageS) << std::endl;
+			if(packageD < totalCharge)
+				std::cout << "By switching to Package D you would save: $"
+					  << (totalCharge - packageD) << std::endl;
 			break;
 		case 'd':
 		case 'D':
-			std::cout << "Total charges for package D at " << u
+			std::cout << "\nTotal charges for package D at " << u
 				  << " units is: $" << totalCharge
 				  << std::endl;
-			// TO DO: Calculate savings 
+			packageB = calculateCost('b', u);
+			packageS = calculateCost('s', u);
+
+			if(packageB < totalCharge)
+				std::cout << "By switching to Package B you would save: $"
+					  << (totalCharge - packageB) << std::endl;
+			if(packageS < totalCharge)
+				std::cout << "By switching to Package S you would save: $"
+					  << (totalCharge - packageS) << std::endl;
 			break;
 	}
-	
 };
 
 //------------------------------------------------
