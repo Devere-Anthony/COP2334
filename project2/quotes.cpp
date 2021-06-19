@@ -82,27 +82,41 @@ int getUnits()
 //------------------------------------------------
 void getQuote(char p, int u)
 {
+	double totalCharge = calculateCost(p,u);
+	double packageB{}, packageS{}, packageD{};  //exist for savings comparison
+
 	switch (p)
 	{
 		case 'b':
 		case 'B':
-			// TO DO: Calculate charges 
 			std::cout << "Total charges for package B at " << u
-				  << " units is: $" << calculateCost(p,u)
+				  << " units is: $" << totalCharge
 				  << std::endl;
+
 			// TO DO: Calculate savings
+			// calculate charge using s and d
+			packageS = calculateCost('s', u);
+			packageD = calculateCost('d', u);
+			
+			// if it is less, than output savings message
+			if(packageS < totalCharge)
+				std::cout << "By switching to Package S you would save: $"
+					  << (totalCharge - packageS) << std::endl;
+			if(packageD < totalCharge)
+				std::cout << "By switching to Package D you would save: $"
+					  << (totalCharge - packageD) << std::endl;
 			break;
 		case 's':
 		case 'S':
 			std::cout << "Total charges for package S at " << u
-				  << " units is: $" << calculateCost(p,u)
+				  << " units is: $" << totalCharge
 				  << std::endl;
 			// TO DO: Calculate savings
 			break;
 		case 'd':
 		case 'D':
 			std::cout << "Total charges for package D at " << u
-				  << " units is: $" << calculateCost(p,u)
+				  << " units is: $" << totalCharge
 				  << std::endl;
 			// TO DO: Calculate savings 
 			break;
@@ -137,6 +151,5 @@ double calculateCost(char p, int u)
 			cost = dBase;	// D package, flat rate
 			break;
 	}
-	
 	return cost;
 };
