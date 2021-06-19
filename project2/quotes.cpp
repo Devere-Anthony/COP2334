@@ -15,22 +15,21 @@ int getUnits();
 void getQuote(char, int);
 double calculateCost(char, int);
 
-
 //================================================
 // Main
 //================================================
 int main()
 {
 	char package{}, resume{};
-	int units{};
+	int units{};	
 	bool flag{true};
 
 	do
 	{
-		package = getPackage();
-		units = getUnits();
+		package = getPackage();	// Get user input for packages 
+		units = getUnits();	// and number of units
 
-		getQuote(package, units);
+		getQuote(package, units);  // get quotes and potential savings 
 
 		std::cout << "\nWould you like to request another quote?" << std::endl;
 		std::cout << "(Type 'N' to quit, any character to continue)" << std::endl;
@@ -42,6 +41,8 @@ int main()
 		std::cout << std::endl;
 	}while(flag);
 
+	std::cout << "\nProgram exiting..." << std::endl;
+
 	return 0;
 }
 
@@ -50,6 +51,11 @@ int main()
 //================================================
 char getPackage()
 {
+	/* getPackage -> accepts user input for the desired package.
+	 * Return:
+	 *	- char containing the package name
+	 */
+
 	char c;
 	bool flag{true};
 
@@ -60,7 +66,7 @@ char getPackage()
 		
 		switch(c)
 		{
-			case 'b':
+			case 'b':	// all valid cases
 			case 'B':
 			case 's':
 			case 'S':
@@ -68,7 +74,7 @@ char getPackage()
 			case 'D':
 				flag = false;
 				break;
-			default:
+			default:	// invalid cases
 				std::cout << "Package not recognized. Please try again.\n"
 					  << std::endl;
 				break;
@@ -80,6 +86,11 @@ char getPackage()
 //------------------------------------------------
 int getUnits()
 {
+	/* getUnits -> gets user input for number of units.
+	 * Return:
+	 *	- int containing number of units
+	 */
+
 	int x{};
 
 	do
@@ -93,21 +104,28 @@ int getUnits()
 //------------------------------------------------
 void getQuote(char p, int u)
 {
+	/* getQuote -> outputs the total estimate for the quote and potential 
+	 *	saving offered by switching plans. Calls function to calculate
+	 *	the total cost of the estimates.
+	 * Return
+	 *	- N/a
+	 */
+
 	double totalCharge = calculateCost(p,u);
 	double packageB{}, packageS{}, packageD{};  //exist for savings comparison
 
-	switch (p)
+	switch (p)	// all possible valid cases
 	{
 		case 'b':
 		case 'B':
-			std::cout << "\nTotal charges for package B at " << u
+			std::cout << "\nTotal charges for package B at " << u	// output total
 				  << " units is: $" << totalCharge
 				  << std::endl;
 
-			packageS = calculateCost('s', u);
-			packageD = calculateCost('d', u);
+			packageS = calculateCost('s', u);	// calculate other packages
+			packageD = calculateCost('d', u);	// at same units
 			
-			if(packageS < totalCharge)
+			if(packageS < totalCharge)	// compare total charges
 				std::cout << "By switching to Package S you would save: $"
 					  << (totalCharge - packageS) << std::endl;
 			if(packageD < totalCharge)
@@ -151,7 +169,15 @@ void getQuote(char p, int u)
 //------------------------------------------------
 double calculateCost(char p, int u)
 {
-	// [(# units - #units cap) * additional fee] + base fee
+	/* calculateCost -> calculates the total cost of the given package
+	 *	at the amount of units. 
+	 *
+         *	 [(# units - #units cap) * additional fee] + base fee
+	 *
+	 * Return: 
+	 * 	- double containing total cost
+	 */
+
 	double cost{}, bBase{}, sBase{9.95}, dBase{19.95}; 	// base fees
 
 	switch(p)
