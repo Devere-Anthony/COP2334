@@ -1,0 +1,35 @@
+Goal: Create a program that calculates the cost of a three-tiered service 
+	* program is a quote service that continually allows user request quotes 
+	* after user enter quote, program prompts user to continue or quit 
+	* assume software will run at least once 
+
+Calculating Cost:
+	[(# unit requested - #unit cap) * additional fee] + base fee
+
+Validity Checking:
+* user input for package
+	- must be: B, b, S, s, D, d
+	- must reprompt if user enter character other than above character 
+	- continue to prompt user until a valid package is chosen 
+	- don't error check for multiple characters, assume user will enter once character 
+
+* number of service units
+	- must be between 1 and 1000 inclusive 
+	- prompt user for value again if they enter a value outside of that range
+	- MUST be an integer, no need for error checking however
+
+Cost Savings:
+* program must inform user if it would be less expensive to change plans and display the cost savings 
+------------------------------------------------------------
+Other notes:
+* calculate the cost of each package everytime the user enters a number of units; however, you only need to display
+  the quote the user wanted (implement using a switch case)
+
+========================================================================================================================================================================
+1) Prompt user for package input:
+	- create char variable to store user input [X]
+	- prompt user for input [X]
+	- read user input into char variable [X]
+	- test if char variable is valid input [X]
+	- if invalid, prompt again until valid [X]
+	- if valid store input and save for later processing [X]
