@@ -82,39 +82,59 @@ int getUnits()
 //------------------------------------------------
 void getQuote(char p, int u)
 {
-	// TO DO: just run calculate function 3 times
-	std::cout << "TEST COST:" << calculateCost(p, u)
-		  << std::endl;
-
-	// TO DO: ouput quote based on which package
+	switch (p)
+	{
+		case 'b':
+		case 'B':
+			// TO DO: Calculate charges 
+			std::cout << "Total charges for package B at " << u
+				  << " units is: $" << calculateCost(p,u)
+				  << std::endl;
+			// TO DO: Calculate savings
+			break;
+		case 's':
+		case 'S':
+			std::cout << "Total charges for package S at " << u
+				  << " units is: $" << calculateCost(p,u)
+				  << std::endl;
+			// TO DO: Calculate savings
+			break;
+		case 'd':
+		case 'D':
+			std::cout << "Total charges for package D at " << u
+				  << " units is: $" << calculateCost(p,u)
+				  << std::endl;
+			// TO DO: Calculate savings 
+			break;
+	}
+	
 };
 
 //------------------------------------------------
 double calculateCost(char p, int u)
 {
 	// [(# units - #units cap) * additional fee] + base fee
-	// TO DO: make some constants for the fees?
 	double cost{}, bBase{}, sBase{9.95}, dBase{19.95}; 	// base fees
 
 	switch(p)
 	{
-		case 'b':
+		case 'b':		// B package
 		case 'B':
 			if(u > 20)	// more than 20 unit has additional cost
 				cost = ((u - 20) * 0.25) + bBase;
 			else
-				cost = bBase;	// less than 20 units is free
+				cost = bBase;	// less than 20 units 
 			break;
-		case 's':
+		case 's':		// S package
 		case 'S':
-			if(u > 100)
+			if(u > 100)	// more than 100 units has additional cost
 				cost = ((u - 100) * 0.1) + sBase;
 			else 
-				cost = sBase;
+				cost = sBase;	// less than 100 units
 			break;
 		case 'd':
 		case 'D':
-			cost = dBase;
+			cost = dBase;	// D package, flat rate
 			break;
 	}
 	
