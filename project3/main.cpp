@@ -8,6 +8,7 @@
 // TO DO: consider controlling the amount of decimal points shown to make formatting cleaner
 
 #include <iostream>
+#include <iomanip>
 
 //================================================
 // Function Declaration(s)
@@ -31,14 +32,22 @@ int main()
 	{
 		choice = menu();
 
+		/* Note: learned you have to clear output flags using this while loop with 
+		 * the continue statement. If not, then the numeric values will keep the same precision
+		 * when I don't intend them to.
+		 */
+		std::cout << std::resetiosflags(std::cout.flags());
+
 		switch(choice)
 		{
 			case 1:	// Convert meters to feet
 			{
+				double length{};
 				std::cout << "\nConvert meters to feet:" << std::endl;
 				std::cout << "Enter value in meters ";
-				double length = getValue();
-				std::cout << "\n" << length << " m = " 
+				length = getValue();
+				std::cout << "\n" << length << " m = ";
+				std::cout << std::fixed << std::setprecision(3)
 					  << meters_to_feet(length) << " ft\n"
 					  << std::endl;
 				continue;
@@ -49,7 +58,8 @@ int main()
 				std::cout << "\nConvert litres to gallons:" << std::endl;
 				std::cout << "Enter value in litres ";
 				litres = getValue();
-				std::cout << "\n" << litres << " l = "
+				std::cout << "\n" << litres << " l = ";
+				std::cout << std::fixed << std::setprecision(3)
 					  << litres_to_gallons(litres) << " gal\n"
 					  << std::endl;
 				continue;
@@ -62,7 +72,8 @@ int main()
 				length = getValue();
 				std::cout << "Enter width of rectangle in meters ";
 				width = getValue();
-				std::cout << "\nArea of rectangle is: " 
+				std::cout << "\nArea of rectangle is: ";
+				std::cout << std::fixed << std::setprecision(3)
 					  << calculateArea(length, width) << " square feet.\n"
 					  << std::endl;
 				continue;
@@ -73,7 +84,9 @@ int main()
 				std::cout << "\nConvert meters/litre to miles/gallon:" << std::endl;
 				std::cout << "Enter meters per litre ";
 				mpl = getValue();
-				std::cout << "\nThe equivalent is " << mplConverter(mpl) 
+				std::cout << "\nThe equivalent is "
+					  << std::fixed << std::setprecision(3)
+				          << mplConverter(mpl) 
 					  << " miles per gallon.\n" << std::endl;
 				continue;
 			}
