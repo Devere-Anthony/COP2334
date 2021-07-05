@@ -12,15 +12,16 @@
 // Function Declaration(s)
 //================================================
 int menu();
+double meters_to_feet(double);
 
 //================================================
 // Main 
 //================================================
 int main()
 {
-	// display menu and get user's choice
 	int choice{};
 
+	// display menu and get user's choice
 	do
 	{
 		choice = menu();
@@ -30,6 +31,34 @@ int main()
 			  << "Choice must be between (including) 1-5.\n"
 			  << std::endl;
 	} while(choice < 1 || choice > 5);
+
+
+	// series of cases that determine which function to call
+	switch(choice)
+	{
+		case 1:
+		{
+			double length{};
+			std::cout << "\nEnter length in meters to convert to feet > ";
+			std::cin >> length;
+			std::cout << "\n" << length << " m = " 
+				  << meters_to_feet(length) << " ft"
+				  << std::endl;
+			break;
+		}
+		case 2:
+			// TO DO: implement litres to gallons function call
+			break;
+		case 3: 
+			// TO DO: implement area of rectangle function call 
+			break;
+		case 4:
+			// TO DO: Computer miles per gallon/meters per litre function call
+			break;
+		case 5:
+			// TO DO: Exit program
+			break;
+	}
 
 	return 0;
 }
@@ -57,4 +86,19 @@ int menu()
 	std::cin >> n;
 
 	return n;
+};
+
+//------------------------------------------------
+double meters_to_feet(double d)
+{
+	/* meters_to_feet() -> converts a value in meters to equivalent value in feet 
+	 * Return:
+	 *	- double value storing value in feet
+	 * Args:
+	 *	- d -> a double value in meters to be converted
+	 */
+
+	d = (d/0.3048);
+
+	return d;
 };
