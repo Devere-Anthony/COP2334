@@ -13,6 +13,7 @@
 //================================================
 int menu();
 double meters_to_feet(double);
+double litres_to_gallons(double);
 
 //================================================
 // Main 
@@ -47,8 +48,15 @@ int main()
 			break;
 		}
 		case 2:
-			// TO DO: implement litres to gallons function call
+		{
+			double litres{};
+			std::cout << "\nEnter volume in litres to convert to gallons > ";
+			std::cin >> litres;
+			std::cout << "\n" << litres << " l = "
+				  << litres_to_gallons(litres) << " gal"
+				  << std::endl;
 			break;
+		}
 		case 3: 
 			// TO DO: implement area of rectangle function call 
 			break;
@@ -91,14 +99,23 @@ int menu()
 //------------------------------------------------
 double meters_to_feet(double d)
 {
-	/* meters_to_feet() -> converts a value in meters to equivalent value in feet 
-	 * Return:
-	 *	- double value storing value in feet
-	 * Args:
-	 *	- d -> a double value in meters to be converted
-	 */
+	/* meters_to_feet() -> converts a value in meters to equivalent value in feet */
 
+	// 0.3048 meters = 1 foot
 	d = (d/0.3048);
 
 	return d;
 };
+
+//------------------------------------------------
+double litres_to_gallons(double d)
+{
+	/* litres_to_gallons() -> converts a value in litres to equivalent value in gallons */
+
+	// 1 litre = 0.264 US gallons
+	d = (d * 0.2641);
+
+	return d;
+};
+
+//------------------------------------------------
