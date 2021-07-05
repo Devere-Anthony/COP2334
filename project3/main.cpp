@@ -5,7 +5,6 @@
  * Last modified: 5 JULY 2021
  */
 
-// TO DO: don't allow values to be negative for conversion
 // TO DO: consider controlling the amount of decimal points shown to make formatting cleaner
 
 #include <iostream>
@@ -18,6 +17,7 @@ double meters_to_feet(double);
 double litres_to_gallons(double);
 double calculateArea(double, double);
 double mplConverter(double);
+double getValue();
 
 //================================================
 // Main 
@@ -27,7 +27,6 @@ int main()
 	int choice{};
 	bool flag{true};
 
-	// display menu and get user's choice
 	while(flag)
 	{
 		choice = menu();
@@ -36,43 +35,44 @@ int main()
 		{
 			case 1:	// Convert meters to feet
 			{
-				double length{};
-				std::cout << "\nEnter length in meters to convert to feet > ";
-				std::cin >> length;
+				std::cout << "\nConvert meters to feet:" << std::endl;
+				std::cout << "Enter value in meters ";
+				double length = getValue();
 				std::cout << "\n" << length << " m = " 
-					  << meters_to_feet(length) << " ft"
+					  << meters_to_feet(length) << " ft\n"
 					  << std::endl;
 				continue;
 			}
 			case 2: // Convert litres to US gallons
 			{
 				double litres{};
-				std::cout << "\nEnter volume in litres to convert to gallons > ";
-				std::cin >> litres;
+				std::cout << "\nConvert litres to gallons:" << std::endl;
+				std::cout << "Enter value in litres ";
+				litres = getValue();
 				std::cout << "\n" << litres << " l = "
-					  << litres_to_gallons(litres) << " gal"
+					  << litres_to_gallons(litres) << " gal\n"
 					  << std::endl;
 				continue;
 			}
 			case 3: // Calculate area of a rectangle in square feet
 			{
 				double length{}, width{};
-				std::cout << "\nEnter length of rectangle in meters > ";
-				std::cin >> length;
-				std::cout << "Enter width of rectangle in meters > ";
-				std::cin >> width;
-				std::cout << "Area of rectangle is: " 
+				std::cout << "\nCalculate area of rectangle in square feet:" << std::endl;
+				std::cout << "Enter length of rectangle in meters ";
+				length = getValue();
+				std::cout << "Enter width of rectangle in meters ";
+				width = getValue();
+				std::cout << "\nArea of rectangle is: " 
 					  << calculateArea(length, width) << " square feet.\n"
 					  << std::endl;
 				continue;
 			}
 			case 4:
 			{
-				// TO DO: Computer miles per gallon/meters per litre function call
-				double mpl{};  // miles per litre	
-				std::cout << "\nEnter miles per litre > ";
-				std::cin >> mpl;
-				// TO DO: make function call to mpl-mpg converter
+				double mpl{};  // meters per litre	
+				std::cout << "\nConvert meters/litre to miles/gallon:" << std::endl;
+				std::cout << "Enter meters per litre ";
+				mpl = getValue();
 				std::cout << "\nThe equivalent is " << mplConverter(mpl) 
 					  << " miles per gallon.\n" << std::endl;
 				continue;
@@ -83,7 +83,7 @@ int main()
 				break;
 		
 			default:  // Input outside range of 1-5
-				std::cout << "\nInvalid input: \nChoice must be between (including) 1-5.\n"
+				std::cout << "\nInvalid input: Choice must be between (including) 1-5.\n"
 				  << std::endl;
 		} // end switch
 	} // end while
@@ -162,4 +162,25 @@ double mplConverter(double d)
 	d = (d)/(424.86576);
 
 	return d;
+};
+
+//------------------------------------------------
+double getValue()
+{	
+	/* getValue() -> get the length of a value in meters. provides basic input validation. */
+
+	double m{};
+
+	do
+	{
+		std::cout << "> ";
+		std::cin >> m;
+
+		if(m < 0)	// length can't be negative value 
+			std::cout << "Invalid input: value must be a nonnegative value (i.e. greater or equal to 0)"
+				  << "\nTry again.\n"
+				  << std::endl;
+	}while(m < 0);
+
+	return m;
 };
