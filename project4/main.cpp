@@ -4,6 +4,17 @@
  * Primary Author: D'Anthony Weaver
  * Contributing Authors:N/A
  * Last Modified: 18 JULY 2021
+ * 
+ * TO DO: 
+ * 	1. Add "documentation" in source for functions
+ * 	2. Review requirements 
+ * 	3. Add functionality that only allows for 10 sales people max
+ * 		- don't allow for 0 or less than 0 sales people 
+ * 		- don't allow for more than 10 sales people
+ * 	4. Add funcitonality that allows for 1 week minimum and 10 weeks maximum
+ * 		- don't allow for 0 or less than 0 weeks
+ * 		- don't allow for more than 10 weeks
+ * 	5. Create better function names
  */
 
 #include <iostream>
@@ -18,6 +29,7 @@
 int openFile();
 int createFile(std::ifstream&);
 void writeData(std::ifstream&, std::ofstream&, int);
+void testValue(int);
 
 //================================================
 // Main
@@ -69,6 +81,8 @@ int createFile(std::ifstream& is)
     // Get number of sales people 
     std::getline(is, line);
     numSalesPeople = std::stoi(line);
+
+    // TO DO: Test value (place into separate function to make it general to all cases)
     os << "Number of Sales People: " << numSalesPeople << std::endl;
 
     // Get number of weeks
@@ -77,7 +91,7 @@ int createFile(std::ifstream& is)
     os << "Number of Weeks Per Person: " << numWeeks 
        << "\n" << std::endl;
 
-    // TO DO: Call writeData number of times as people
+    // Call writeData as many times as there number of sales people
     for(size_t i{}; i < numSalesPeople; i++)
         writeData(is, os, numWeeks);
 
