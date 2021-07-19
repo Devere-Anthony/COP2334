@@ -56,7 +56,7 @@ int openFile()
     else
         read = createFile(is);    // Create output file 
 
-    // input stream should automaticall close once function returns 
+    // input stream should automatically close once function returns 
 
     return read;   // Good read
 };
