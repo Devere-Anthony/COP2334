@@ -5,8 +5,6 @@
  * Contributing Authors:N/A
  * Last Modified: 18 JULY 2021
  * 
- * TO DO: 
- * 	2. Review requirements 
  */
 
 #include <iostream>
@@ -57,6 +55,8 @@ int openFile()
         read = -1;  // Bad read, used 0 and 1 to represent false/true
     else
         read = createFile(is);    // Create output file 
+
+    // input stream should automaticall close once function returns 
 
     return read;   // Good read
 };
@@ -135,6 +135,8 @@ void writeData(std::ifstream& is, std::ofstream& os, int weeks)
  
     os << "Grand Total: " << grandTotal << std::endl;
     os << "Overall Weekly Average: " << grandTotal / weeks << std::endl;
+    
+    // output stream should close once function ends
 };
 
 //------------------------------------------------
