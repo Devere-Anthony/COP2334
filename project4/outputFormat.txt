@@ -1,0 +1,17 @@
+=====================
+*   Sales Summary   *
+=====================
+
+Number of Sales People: {VARIABLE}
+
+Number of Weeks: {VARIABLE}
+
+----------------------------------------
+lastName: {VARIABLE}
+Week n Total Sales: 
+Week n Average Sales (per day):
+...
+...
+...
+lastName Total Sales:
+lastName Average Sales (per week or per day?):
