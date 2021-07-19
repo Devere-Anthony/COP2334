@@ -1,0 +1,33 @@
+Number of Sales People: 3
+Number of Weeks Per Person: 2
+
+--------------------
+lastName1:
+Week 1 Total Sales: 171.40
+Week 1 Average Daily Sales: 34.28
+
+Week 2 Total Sales: 171.40
+Week 2 Average Daily Sales: 34.28
+
+Grand Total: 342.80
+Overall Weekly Average: 171.40
+--------------------
+lastName2:
+Week 1 Total Sales: 231.50
+Week 1 Average Daily Sales: 46.30
+
+Week 2 Total Sales: 171.40
+Week 2 Average Daily Sales: 34.28
+
+Grand Total: 402.90
+Overall Weekly Average: 201.45
+--------------------
+lastName3:
+Week 1 Total Sales: 177.90
+Week 1 Average Daily Sales: 35.58
+
+Week 2 Total Sales: 344.90
+Week 2 Average Daily Sales: 68.98
+
+Grand Total: 522.80
+Overall Weekly Average: 261.40
