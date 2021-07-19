@@ -33,7 +33,7 @@ int main()
         std::cout << "ERROR: could not open file!" << std::endl;
         return -1;	// Couldn't process file, return -1 as error code
     }
-    else    // TO DO: DELETE BEFORE SUBMITTING
+    else    
         std::cout << "File created successfully!" << std::endl;
 
     return 0;
