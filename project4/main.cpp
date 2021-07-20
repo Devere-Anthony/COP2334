@@ -5,6 +5,9 @@
  * Contributing Authors:N/A
  * Last Modified: 18 JULY 2021
  * 
+ * TO DO:
+ *	1. Review assignment requirements 
+ *	2. Test with possible test cases
  */
 
 #include <iostream>
@@ -79,6 +82,10 @@ int createFile(std::ifstream& is)
         std::cout << "ERROR: Could not create file!" << std::endl;
         return -1;   // bad read
     }
+    
+    /* Write title to output file */
+    os << std::string(50, '=') << "\n*\t\tWeekly Sales Summary\t\t *\n"
+       << std::string(50, '=') << std::endl;
 
     /* Get number of salespeople */
     std::getline(is, line);
@@ -118,7 +125,8 @@ void writeData(std::ifstream& is, std::ofstream& os, int weeks)
     std::string fname{}, lname{};
     double weeklyTotal{}, weeklyAverage{}, grandTotal{}, overallAverage{};
     is >> fname >> lname;
-    os << "--------------------\n" << lname << ":" << std::endl;
+    //os << "--------------------\n" << lname << ":" << std::endl;
+    os << std::string(50, '-') << "\n" << lname << ":" << std::endl;
 
     // Read sales per day as doubles
     double m{}, t{}, w{}, tr{}, f{};		// variables for each day 
@@ -134,7 +142,8 @@ void writeData(std::ifstream& is, std::ofstream& os, int weeks)
     }
  
     os << "Grand Total: " << grandTotal << std::endl;
-    os << "Overall Weekly Average: " << grandTotal / weeks << std::endl;
+    os << "Overall Weekly Average: " << grandTotal / weeks 
+       << "\n" << std::endl;
     
     // output stream should close once function ends
 };
