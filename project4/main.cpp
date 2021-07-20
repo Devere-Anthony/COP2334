@@ -32,12 +32,24 @@ int main()
     if(read == -1)
     {
         std::cout << "ERROR: could not open file!" << std::endl;
-        return -1;	// Couldn't process file, return -1 as error code
+        return -1;	// Error for bad read/write opration for whatever reason
+    }
+    if(read == -2)
+    {
+	    std::cout << "ERROR: Too many salespeople. Must be in range 1-10."
+		      << std::endl;
+	    return -2;	// Error for too many sales people
+    }
+    if(read == -3)
+    {
+	    std::cout << "ERROR: Too many weeks to process. Must be in range 1-10."
+		      << std::endl;
+	    return -3;	// Error for too many weeks
     }
     else    
         std::cout << "File created successfully!" << std::endl;
 
-    return 0;
+    return 0;	// Successful read/write
 };
 
 //================================================
@@ -91,14 +103,14 @@ int createFile(std::ifstream& is)
     std::getline(is, line);
     numSalesPeople = std::stoi(line);
     if(numSalesPeople <= 0 || numSalesPeople > 10)	// Ensure range is 1-10
-	    return -1;	// bad read
+	    return -2;	// bad read
     os << "Number of Sales People: " << numSalesPeople << std::endl;
 
     /* Get number of weeks */
     std::getline(is, line);
     numWeeks = std::stoi(line);
     if(numWeeks <= 0 || numWeeks > 10)		// Ensure range is 1-10
-	    return -1;
+	    return -3;
     os << "Number of Weeks Per Person: " << numWeeks 
        << "\n" << std::endl;
 
