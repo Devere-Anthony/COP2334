@@ -3,7 +3,7 @@
  *
  * Primary Author: D'Anthony Weaver
  * Contributing Authors:N/A
- * Last Modified: 18 JULY 2021
+ * Last Modified: 20 JULY 2021
  * 
  * TO DO:
  *	1. Review assignment requirements 
@@ -27,20 +27,20 @@ void writeData(std::ifstream&, std::ofstream&, int);
 //================================================
 int main()
 {
-    int read = openFile();
+    int readFlag = openFile();
 
-    if(read == -1)
+    if(readFlag == -1)
     {
         std::cout << "ERROR: could not open file!" << std::endl;
         return -1;	// Error for bad read/write opration for whatever reason
     }
-    if(read == -2)
+    if(readFlag == -2)
     {
 	    std::cout << "ERROR: Too many salespeople. Must be in range 1-10."
 		      << std::endl;
 	    return -2;	// Error for too many sales people
     }
-    if(read == -3)
+    if(readFlag == -3)
     {
 	    std::cout << "ERROR: Too many weeks to process. Must be in range 1-10."
 		      << std::endl;
@@ -64,16 +64,16 @@ int openFile()
 	 *	- -1 if bad read
 	 */
 
-    int read{};
+    int openFlag{};
     std::ifstream is{"SalesData.txt"};
     if(!is)
-        read = -1;  // Bad read, used 0 and 1 to represent false/true
+        openFlag = -1;  // Bad read, used 0 and 1 to represent false/true
     else
-        read = createFile(is);    // Create output file 
+        openFlag = createFile(is);    // Create output file 
 
     // input stream should automatically close once function returns 
 
-    return read;   // Good read
+    return openFlag;   // Good read
 };
 
 //------------------------------------------------
