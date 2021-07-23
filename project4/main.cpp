@@ -93,7 +93,7 @@ int createFile(std::ifstream& is)
     }
     
     /* Write title to output file */
-    os << std::string(50, '=') << "\n*\t\tWeekly Sales Summary\t\t *\n"
+    os << std::string(50, '=') << "\n\t\tWeekly Sales Summary\t\t \n"
        << std::string(50, '=') << std::endl;
 
     /* Get number of salespeople */

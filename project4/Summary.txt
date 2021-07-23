@@ -1,5 +1,5 @@
 ==================================================
-*		Weekly Sales Summary		 *
+		Weekly Sales Summary		 
 ==================================================
 Number of Sales People: 7
 Number of Weeks Per Person: 2
