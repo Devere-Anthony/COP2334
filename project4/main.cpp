@@ -5,9 +5,6 @@
  * Contributing Authors:N/A
  * Last Modified: 20 JULY 2021
  * 
- * TO DO:
- *	1. Review assignment requirements 
- *	2. Test with possible test cases
  */
 
 #include <iostream>
@@ -137,7 +134,6 @@ void writeData(std::ifstream& is, std::ofstream& os, int weeks)
     std::string fname{}, lname{};
     double weeklyTotal{}, weeklyAverage{}, grandTotal{}, overallAverage{};
     is >> fname >> lname;
-    //os << "--------------------\n" << lname << ":" << std::endl;
     os << std::string(50, '-') << "\n" << lname << ":" << std::endl;
 
     // Read sales per day as doubles

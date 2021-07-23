@@ -1,7 +1,7 @@
 ==================================================
 *		Weekly Sales Summary		 *
 ==================================================
-Number of Sales People: 5
+Number of Sales People: 7
 Number of Weeks Per Person: 2
 
 --------------------------------------------------
@@ -58,4 +58,26 @@ Week 2 Average Daily Sales: 34.28
 
 Grand Total: 342.80
 Overall Weekly Average: 171.40
+
+--------------------------------------------------
+lastName6:
+Week 1 Total Sales: 15.00
+Week 1 Average Daily Sales: 3.00
+
+Week 2 Total Sales: 40.00
+Week 2 Average Daily Sales: 8.00
+
+Grand Total: 55.00
+Overall Weekly Average: 27.50
+
+--------------------------------------------------
+lastName7:
+Week 1 Total Sales: 40.00
+Week 1 Average Daily Sales: 8.00
+
+Week 2 Total Sales: 15.00
+Week 2 Average Daily Sales: 3.00
+
+Grand Total: 55.00
+Overall Weekly Average: 27.50
 
