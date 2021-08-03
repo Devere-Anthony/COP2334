@@ -10,12 +10,14 @@
 #include <fstream>
 #include <string>
 
+const int SIZE = 12;		// Size of temperature arrays
+
 //================================================
 // Function Declarations
 //================================================
 int openFile();
 double readTemps(std::ifstream&);
-void printArray(double []);
+void printArray(double [], int);
 
 //================================================
 // Main
@@ -35,7 +37,7 @@ int openFile()
 {
 	std::string date1{}, date2{};
 	bool flag{};
-	double arr1[12], arr2[12];
+	double arr1[SIZE], arr2[SIZE];
 
 	std::ifstream is{"temperatures.txt"};
 	if(!is)
@@ -51,10 +53,22 @@ int openFile()
 	}
 
 	/* Read first set of 12 temperatures */
-	for(size_t i{}; i < 12; ++i)
+	for(size_t i{}; i < SIZE; ++i)
 	{
 		arr1[i] = readTemps(is);	// Call function to read temperature data
 	}
+
+	/* Display read files to stdout */
+	printArray(arr1, SIZE);
+
+	/* Read second set of 12 temperatures */
+	for(size_t j{}; j < SIZE; ++j)
+	{
+		arr2[j] = readTemps(is);
+	}
+
+	/* Display array 2 */
+	printArray(arr2, SIZE);
 
 	return flag;
 };
@@ -69,6 +83,11 @@ double readTemps(std::ifstream& ist)
 }	
 
 //------------------------------------------------
-void printArray(double arr[])
+void printArray(double arr[], int length)
 {
-}
+	for(size_t i{}; i < length; ++i)
+	{
+		std::cout << arr[i] << " ";
+	}
+	std::cout << std::endl;
+};
