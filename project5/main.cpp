@@ -4,6 +4,7 @@
  * Author: D'Anthony Weaver
  * Contributing Authors: N/A
  * Last Modified: 3 AUGUST 2021
+ *
  */
 
 #include <iostream>
@@ -29,7 +30,7 @@ double stdPopDeviation(const double []);
 //================================================
 int main()
 {
-	int readFlag = openFile();	// Consider changing this type, leave for now
+	int readFlag = openFile();	
 
 	if(!readFlag)
 		std::cout << "ERROR: File not found!" << std::endl;
@@ -42,23 +43,27 @@ int main()
 //================================================
 int openFile()
 {
+	/* openFile() -> opens an inputstream to read input from a file
+	 * Returns false(0) if there is a read error and true(1) if
+	 * the file is read successfully.
+	 */
+
 	std::string date1{}, date2{};
 	bool flag{};
-	double arr1[SIZE], arr2[SIZE];
+	double date1Arr[SIZE], date2Arr[SIZE];
 
 	std::ifstream is{"temperatures.txt"};
 	if(!is)
 	{
-		// File failed to read
-		flag = false;
+		flag = false;	// failed to read file
 	}
 	else
 	{
 		// File read successfully
 		is >> date1 >> date2;	// read dates
-		readTemp(is, arr1);	// read values into array1	
-		readTemp(is, arr2);	// read values into array2
-		formatOutput(date1, date2, arr1, arr2);
+		readTemp(is, date1Arr);	// read values into array1	
+		readTemp(is, date2Arr);	// read values into array2
+		formatOutput(date1, date2, date1Arr, date1Arr);
 		flag = true;
 	}
 
@@ -69,6 +74,13 @@ int openFile()
 void readTemp(std::ifstream& ist, double arr[])
 {
 	/* Read values into an array from a file */
+	/* readTemp() -> reads values from an inputstream into 
+	 * a variable for placement in an array. 
+	 * Takes as arguments a reference to an inputstream object 
+	 * and an array location.
+	 * arr[] is a general name for any array passed to function.
+	 */
+
 	double n{};
 	for(size_t i{}; i < SIZE; ++i)
 	{
@@ -80,7 +92,12 @@ void readTemp(std::ifstream& ist, double arr[])
 //------------------------------------------------
 void printArray(const double arr[], int length)
 {
-	/* Print the contents of an array - Mostly for testing */
+	/* printArray() -> display the contents of an array 
+	 * (Not used in final project, but useful for testing 
+	 * and can possibly be used in later expansion of project)
+	 * arr[] is a general name for any array passed to function.
+	 */
+
 	for(size_t i{}; i < length; ++i)
 	{
 		std::cout << arr[i] << " ";
@@ -90,34 +107,40 @@ void printArray(const double arr[], int length)
 };
 
 //------------------------------------------------
-void formatOutput(std::string date1, std::string date2, double arr1[], double arr2[])
+void formatOutput(std::string date1, std::string date2, double date1Array[], double date2Array[])
 {
-	/* Create a somewhat neatly formatted output for data. */
+	/* formatOutput() -> generate a somewhat neatly formatted output 
+	 * the displays the data points, mean, and standard deviation 
+	 * of the given arrays.
+	 */
+
 	std::cout << "Hour\t\t\t\t" << std::setw(5) << date1 << "\t\t" << date2 << std::endl;
 
 	for(size_t i{}; i < SIZE; ++i)
 	{
-		std::cout << i << "\t\t\t\t" << std::setw(5) << arr1[i] << "\t\t\t   " << arr2[i] << std::endl;
+		std::cout << i << "\t\t\t\t" << std::setw(5) << date1Array[i] << "\t\t\t   " << date2Array[i] << std::endl;
 	}
 
-	std::cout << std::string(65, '=') <<"\nMean temperature:\t\t" << std::setw(5) << calculateMean(arr1) << "\t\t\t   "
-		  << calculateMean(arr2) << '\n' << std::endl;
+	std::cout << std::string(65, '=') <<"\nMean temperature:\t\t" << std::setw(5) << calculateMean(date1Array) << "\t\t\t   "
+		  << calculateMean(date2Array) << '\n' << std::endl;
 	
 	std::cout << "Standard Deivation:\t\t" << std::setw(5) << std::fixed << std::setprecision(2) 
-		  << stdPopDeviation(arr1) << "\t\t\t   " << stdPopDeviation(arr2) << std::endl;
+		  << stdPopDeviation(date1Array) << "\t\t\t   " << stdPopDeviation(date2Array) << std::endl;
 	
 };
 
 //------------------------------------------------
 double calculateMean(const double arr[])
 {
-	/* Calculate the mean of the values in a given array. */
+	/* calculateMean() -> calculates the mean value of a 
+	 * given set of value in an array. Returns the mean value.
+	 * arr[] is a general name for any array passed to function.
+	 */
+
 	double mean{}, total{};
 
 	for(int i{}; i < SIZE; ++i)
-	{
 		total += arr[i];
-	}
 
 	mean = total/SIZE;
 
@@ -128,6 +151,11 @@ double calculateMean(const double arr[])
 double stdPopDeviation(const double arr[])
 {
 	/* Calculate standard deviation of values in a given array */
+	/* stdPopDeviation() -> calculate the standard deviation for a
+	 * population given a set of values in an array. Returns the 
+	 * standard population deviation value.
+	 * arr[] is a general name for any array passed to function.
+	 */
 
 	// 1. Calculate mean
 	double mean = calculateMean(arr);
