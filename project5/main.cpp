@@ -9,6 +9,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <iomanip>
 
 const int SIZE = 24;		// Size of temperature arrays
 
@@ -89,6 +90,11 @@ void printArray(const double arr[], int length)
 //------------------------------------------------
 void formatOutput(std::string date1, std::string date2, double arr1[], double arr2[])
 {
-	std::cout << "Hour\t\t" << date1 << "\t\t" << date2 << std::endl;
+	std::cout << "Hour\t\t" << std::setw(5) << date1 << "\t\t" << date2 << std::endl;
+
+	for(size_t i{}; i < SIZE; ++i)
+	{
+		std::cout << i << "\t\t" << std::setw(5) << arr1[i] << "\t\t\t   " << arr2[i] << std::endl;
+	}
 	
 }
