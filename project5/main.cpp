@@ -20,7 +20,7 @@ const int SIZE = 24;		// Size of temperature arrays
 int openFile();
 void readTemp(std::ifstream&, double []);
 void printArray(const double [], int);
-void formatOutput(std::string, std::string, double[], double[]);	// will need to update ass more functions are created
+void formatOutput(std::string, std::string, double[], double[]);
 double calculateMean(const double []);
 double standardDeviation(const double []);
 
@@ -31,6 +31,8 @@ int main()
 {
 	int readFlag = openFile();	// Consider changing this type, leave for now
 
+	if(!readFlag)
+		std::cout << "ERROR: File not found!" << std::endl;
 
 	return 0;
 }
@@ -47,21 +49,18 @@ int openFile()
 	std::ifstream is{"temperatures.txt"};
 	if(!is)
 	{
-		std::cout << "ERROR: File not found!" << std::endl;
+		// File failed to read
 		flag = false;
 	}
 	else
 	{
-//		std::cout << "File read successfully!" << std::endl;
+		// File read successfully
 		is >> date1 >> date2;	// read dates
 		readTemp(is, arr1);	// read values into array1	
-//		printArray(arr1, SIZE);
 		readTemp(is, arr2);	// read values into array2
-//		printArray(arr2, SIZE);
+		formatOutput(date1, date2, arr1, arr2);
 		flag = true;
 	}
-
-	formatOutput(date1, date2, arr1, arr2);
 
 	return flag;	// input stream should close implicitly 
 };
