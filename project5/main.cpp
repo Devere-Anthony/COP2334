@@ -22,7 +22,7 @@ void readTemp(std::ifstream&, double []);
 void printArray(const double [], int);
 void formatOutput(std::string, std::string, double[], double[]);
 double calculateMean(const double []);
-double standardDeviation(const double []);
+double stdPopDeviation(const double []);
 
 //================================================
 // Main
@@ -103,8 +103,8 @@ void formatOutput(std::string date1, std::string date2, double arr1[], double ar
 	std::cout << std::string(65, '=') <<"\nMean temperature:\t\t" << std::setw(5) << calculateMean(arr1) << "\t\t\t   "
 		  << calculateMean(arr2) << '\n' << std::endl;
 	
-	std::cout << "\nStandard Deivation:\t\t" << std::setw(5) << std::fixed << std::setprecision(2) 
-		  << standardDeviation(arr1) << "\t\t\t   " << standardDeviation(arr2) << std::endl;
+	std::cout << "Standard Deivation:\t\t" << std::setw(5) << std::fixed << std::setprecision(2) 
+		  << stdPopDeviation(arr1) << "\t\t\t   " << stdPopDeviation(arr2) << std::endl;
 	
 };
 
@@ -125,7 +125,7 @@ double calculateMean(const double arr[])
 };
 
 //------------------------------------------------
-double standardDeviation(const double arr[])
+double stdPopDeviation(const double arr[])
 {
 	/* Calculate standard deviation of values in a given array */
 
