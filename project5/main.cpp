@@ -10,7 +10,7 @@
 #include <fstream>
 #include <string>
 
-const int SIZE = 12;		// Size of temperature arrays
+const int SIZE = 24;		// Size of temperature arrays
 
 //================================================
 // Function Declarations
@@ -18,6 +18,7 @@ const int SIZE = 12;		// Size of temperature arrays
 int openFile();
 void readTemp(std::ifstream&, double []);
 void printArray(const double [], int);
+void formatOutput(std::string, std::string, double[], double[]);	// will need to update ass more functions are created
 
 //================================================
 // Main
@@ -47,14 +48,16 @@ int openFile()
 	}
 	else
 	{
-		std::cout << "File read successfully!" << std::endl;
+//		std::cout << "File read successfully!" << std::endl;
 		is >> date1 >> date2;	// read dates
 		readTemp(is, arr1);	// read values into array1	
-		printArray(arr1, SIZE);
+//		printArray(arr1, SIZE);
 		readTemp(is, arr2);	// read values into array2
-		printArray(arr2, SIZE);
+//		printArray(arr2, SIZE);
 		flag = true;
 	}
+
+	formatOutput(date1, date2, arr1, arr2);
 
 	return flag;	// input stream should close implicitly 
 };
@@ -62,8 +65,7 @@ int openFile()
 //------------------------------------------------
 void readTemp(std::ifstream& ist, double arr[])
 {
-
-	/* Read SINGLE temperature data from the text file */
+	/* Read values into an array from a file */
 	double n{};
 	for(size_t i{}; i < SIZE; ++i)
 	{
@@ -83,3 +85,10 @@ void printArray(const double arr[], int length)
 
 	std::cout << std::endl;
 };
+
+//------------------------------------------------
+void formatOutput(std::string date1, std::string date2, double arr1[], double arr2[])
+{
+	std::cout << "Hour\t\t" << date1 << "\t\t" << date2 << std::endl;
+	
+}
