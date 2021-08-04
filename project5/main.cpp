@@ -16,8 +16,8 @@ const int SIZE = 12;		// Size of temperature arrays
 // Function Declarations
 //================================================
 int openFile();
-double readTemps(std::ifstream&);
-void printArray(double [], int);
+void readTemp(std::ifstream&, double []);
+void printArray(const double [], int);
 
 //================================================
 // Main
@@ -48,46 +48,38 @@ int openFile()
 	else
 	{
 		std::cout << "File read successfully!" << std::endl;
-		is >> date1 >> date2;
+		is >> date1 >> date2;	// read dates
+		readTemp(is, arr1);	// read values into array1	
+		printArray(arr1, SIZE);
+		readTemp(is, arr2);	// read values into array2
+		printArray(arr2, SIZE);
 		flag = true;
 	}
 
-	/* Read first set of 12 temperatures */
-	for(size_t i{}; i < SIZE; ++i)
-	{
-		arr1[i] = readTemps(is);	// Call function to read temperature data
-	}
-
-	/* Display read files to stdout */
-	printArray(arr1, SIZE);
-
-	/* Read second set of 12 temperatures */
-	for(size_t j{}; j < SIZE; ++j)
-	{
-		arr2[j] = readTemps(is);
-	}
-
-	/* Display array 2 */
-	printArray(arr2, SIZE);
-
-	return flag;
+	return flag;	// input stream should close implicitly 
 };
 
 //------------------------------------------------
-double readTemps(std::ifstream& ist)
+void readTemp(std::ifstream& ist, double arr[])
 {
-	/* Read the temperature data from the text file */
+
+	/* Read SINGLE temperature data from the text file */
 	double n{};
-	ist >> n;
-	return n;
+	for(size_t i{}; i < SIZE; ++i)
+	{
+		ist >> n;	// read next value
+		arr[i] = n;	// set value in array
+	}
 }	
 
 //------------------------------------------------
-void printArray(double arr[], int length)
+void printArray(const double arr[], int length)
 {
+	/* Print the contents of an array - Mostly for testing */
 	for(size_t i{}; i < length; ++i)
 	{
 		std::cout << arr[i] << " ";
 	}
+
 	std::cout << std::endl;
 };
